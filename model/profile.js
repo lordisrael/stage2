@@ -35,8 +35,10 @@ profileSchema.pre('save', async function(next) {
     this.current_day = current_date.toLocaleDateString('en-US', options)
    }
    if(!this.utc_time) {
-        this.utc_time = new Date(new Date().getTime() + new Date().getTimezoneOffset() * 60000).toISOString().split('.')[0] + 'Z'
-    console.log(this.utc_time)
+    const current_date = new Date();
+    this.utc_time = current_date.toISOString().split('.')[0] + 'Z'
+        /*this.utc_time = new Date(new Date().getTime() + new Date().getTimezoneOffset() * 60000).toISOString().split('.')[0] + 'Z'
+    console.log(this.utc_time)*/
    }
    if(!this.status_code) {
     this.status_code = 200
