@@ -1,4 +1,5 @@
 const { response } = require('express');
+
 const mongoose = require('mongoose')
 const axios = require('axios')
 
@@ -9,7 +10,7 @@ const profileSchema = new mongoose.Schema ({
         unique: true,
     },
     current_day : String,
-    utc_time: Date,
+    utc_time: String,
     track: {
         type: String,
         required: true,
@@ -34,18 +35,8 @@ profileSchema.pre('save', async function(next) {
     this.current_day = current_date.toLocaleDateString('en-US', options)
    }
    if(!this.utc_time) {
-    const currentDate = new Date()
-    const formattedDate = new Date(
-        Date.UTC(
-          currentDate.getUTCFullYear(),
-          currentDate.getUTCMonth(),
-          currentDate.getUTCDate(),
-          currentDate.getUTCHours(),
-          currentDate.getUTCMinutes(),
-          currentDate.getUTCSeconds()
-        )
-      ).toISOString();
-    this.utc_time = formattedDate.slice(0, 5) + "Z"
+        this.utc_time = new Date(new Date().getTime() + new Date().getTimezoneOffset() * 60000).toISOString().split('.')[0] + 'Z'
+    console.log(this.utc_time)
    }
    if(!this.status_code) {
     this.status_code = 200
