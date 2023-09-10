@@ -8,13 +8,13 @@ const profileSchema = new mongoose.Schema ({
         required: true,
         unique: true,
     },
+    current_day : String,
+    utc_time: Date,
     track: {
         type: String,
         required: true,
         enum: ['Design', 'Frontend', 'Backend',]
     },
-    current_day : String,
-    utc_time: Date,
     github_file_url: {
         type: String,
         required: true,
