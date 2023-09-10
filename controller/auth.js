@@ -12,7 +12,7 @@ const searchUser = async(req, res) => {
         queryObject.track = track
     }
 
-    const result = Profile.find(queryObject)
+    const result = Profile.findOne(queryObject)
     const slack = await result.select('slack_name current_day utc_time track github_file_url githhub_repo_url status_code')
 
     res.status(StatusCodes.OK).json(slack)
