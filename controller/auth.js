@@ -13,7 +13,7 @@ const searchUser = async(req, res) => {
     }
 
     const result = await Profile.find(queryObject)
-    res.status(StatusCodes.OK).json({result})
+    res.status(StatusCodes.OK).json(result)
 }
 const createUser = async(req, res) => {
     const {slack_name/*track, github_file_url, github_repo_url*/ } = req.body
