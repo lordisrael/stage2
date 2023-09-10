@@ -13,7 +13,7 @@ const profileSchema = new mongoose.Schema ({
     track: {
         type: String,
         required: true,
-        enum: ['Design', 'Frontend', 'Backend',]
+        enum: ['design', 'frontend', 'backend',]
     },
     github_file_url: {
         type: String,
@@ -34,7 +34,18 @@ profileSchema.pre('save', async function(next) {
     this.current_day = current_date.toLocaleDateString('en-US', options)
    }
    if(!this.utc_time) {
-    this.utc_time = new Date().toISOString()
+    const currentDate = new Date()
+    const formattedDate = new Date(
+        Date.UTC(
+          currentDate.getUTCFullYear(),
+          currentDate.getUTCMonth(),
+          currentDate.getUTCDate(),
+          currentDate.getUTCHours(),
+          currentDate.getUTCMinutes(),
+          currentDate.getUTCSeconds()
+        )
+      ).toISOString();
+    this.utc_time = formattedDate.slice(0, 5) + "Z"
    }
    if(!this.status_code) {
     this.status_code = 200
