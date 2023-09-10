@@ -10,7 +10,7 @@ const rateLimiter = require('express-rate-limit')
 //swagger
 const swaggerUI = require('swagger-ui-express')
 const YAML = require('yamljs')
-const swaggerDocument = YAML.load('./swagger.yaml')
+/*const swaggerDocument = YAML.load('./swagger.yaml')*/
 
 const dbConnect = require('./config/db')
 const queryRoute = require('./routes/queryRoute')
@@ -34,9 +34,9 @@ app.use('/api-docs', swaggerUI.serve, swaggerUI.setup(swaggerDocument))
 
 app.use('/api/v1/search', queryRoute)
     
-    const port = process.env.PORT||3000
-    
-    const start = async() => {
+const port = process.env.PORT||3000
+
+const start = async() => {
     try {
         await dbConnect(process.env.MONGO_URI)
         app.listen(port, () => {
