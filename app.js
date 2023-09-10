@@ -32,7 +32,7 @@ app.use(express.json())
     })
 app.use('/api-docs', swaggerUI.serve, swaggerUI.setup(swaggerDocument))*/
 
-app.use('/api/v1/search', queryRoute)
+app.use('/api', queryRoute)
     
 const port = process.env.PORT||3000
 
