@@ -1,4 +1,6 @@
+const { response } = require('express');
 const mongoose = require('mongoose')
+const axios = require('axios')
 
 const profileSchema = new mongoose.Schema ({
     slack_name : {
@@ -21,9 +23,7 @@ const profileSchema = new mongoose.Schema ({
         type: String,
         required: true,
     }, 
-    status_code : {
-        Number
-    }
+    status_code: Number
 
 });
 
@@ -36,7 +36,11 @@ profileSchema.pre('save', async function(next) {
    if(!this.utc_time) {
     this.utc_time = new Date().toISOString()
    }
-   next();
+   if(!this.status_code) {
+    this.status_code = 200
+    next()
+   }
+
 })
 
 /*profileSchema.pre('save', async function(next) {
