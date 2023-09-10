@@ -27,10 +27,10 @@ app.use(helmet())
 app.use(cors())
 app.use(express.json())
 
-app.get('/', (req, res) => {
+/*app.get('/', (req, res) => {
     res.send('<h1>E commerce</h1><a href="/api-docs">Documentation</a>')
     })
-app.use('/api-docs', swaggerUI.serve, swaggerUI.setup(swaggerDocument))
+app.use('/api-docs', swaggerUI.serve, swaggerUI.setup(swaggerDocument))*/
 
 app.use('/api/v1/search', queryRoute)
     
