@@ -20,9 +20,10 @@ const searchUser = async(req, res) => {
         /*this.utc_time = current_date.toISOString().split('.')[0] + 'Z'*/
         // this.utc_time = new Date(new Date().getTime() + new Date().getTimezoneOffset() * 60000).toISOString().split('.')[0] + 'Z'
         // const utcTime = new Date(new Date().getTime() + new Date().getTimezoneOffset() * 60000).setHours(utcTime.getHours() + 1).toISOString().split('.')[0] + 'Z';
-        const utcTime = new Date(new Date().getTime() + new Date().getTimezoneOffset() * 60000);
-        //utcTime.setHours(utcTime.getHours() + 1);
-        const formattedUtcTime = utcTime.toISOString().split('.')[0] + 'Z';
+        // const utcTime = new Date(new Date().getTime() + new Date().getTimezoneOffset() * 60000);
+        // //utcTime.setHours(utcTime.getHours() + 1);
+        // const formattedUtcTime = utcTime.toISOString().split('.')[0] + 'Z';
+        const formattedUtcTime = new Date().toISOString().split('.')[0] + 'Z'
 
         console.log(this.utc_time)
 
