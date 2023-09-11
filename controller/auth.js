@@ -18,9 +18,13 @@ const searchUser = async(req, res) => {
        }
     if(!this.utc_time) {
         const current_date = new Date();
-        this.utc_time = current_date.toISOString().split('.')[0] + 'Z'
-            /*this.utc_time = new Date(new Date().getTime() + new Date().getTimezoneOffset() * 60000).toISOString().split('.')[0] + 'Z'
-        console.log(this.utc_time)*/
+        /*this.utc_time = current_date.toISOString().split('.')[0] + 'Z'*/
+        // this.utc_time = new Date(new Date().getTime() + new Date().getTimezoneOffset() * 60000).toISOString().split('.')[0] + 'Z'
+        const utcTime = new Date(new Date().getTime() + new Date().getTimezoneOffset() * 60000);
+        utcTime.setHours(utcTime.getHours() + 1);
+        const formattedUtcTime = utcTime.toISOString().split('.')[0] + 'Z';
+        this.utc_time = formattedUtcTime;
+        console.log(this.utc_time)
        }
 
     const result = Profile.findOne(queryObject)
